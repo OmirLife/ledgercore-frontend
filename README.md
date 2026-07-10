@@ -1,16 +1,41 @@
-# React + Vite
+# LedgerCore Frontend Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+LedgerCore Frontend is a client-side user interface built to interact with the LedgerCore banking engine. It provides secure account management, transaction history visualization, and a protected fund transfer interface equipped with idempotency tracking to prevent duplicate execution during network latency or multiple form submissions.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+* User Authentication: Forms for registration and login handling JWT tokens stored securely to maintain authenticated sessions.
+* Interactive Dashboard: Clean layout summarizing account profiles, tracking real-time account balances, and listing categorized transaction histories.
+* Safe Fund Transfers: Form interfaces enforcing dynamic client-side validation (bounds checking for negative numbers, zero, or missing accounts) before generating and passing unique tracking tokens to the ledger service.
+* Error Management: Graceful interceptors translating explicit backend error states (e.g., unauthorized access, invalid credentials, duplicate transactions) into clear UI feedback components.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the ESLint configuration
+* Framework: React (Vite-powered environment for fast building and HMR)
+* State Management: Standard React Context API / React Hooks
+* HTTP Client: Axios (configured with automated request interceptors for token inclusion)
+* Styling: CSS Variables / Basic styling architecture optimized for layout scannability
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## Project Structure
+
+```text
+ledgercore-frontend/
+├── public/               # Static assets
+├── src/
+│   ├── assets/           # Global styles and branding assets
+│   ├── components/       # Reusable layout elements (Buttons, Inputs, Modals)
+│   ├── context/          # Auth context handling JWT state and login/logout flows
+│   ├── hooks/            # Custom hooks for fetching data or handling API logic
+│   ├── views/            # Main layout screens (Login, Register, Dashboard)
+│   ├── app.jsx           # Root application router and route protections
+│   ├── main.jsx          # DOM rendering entry point
+│   └── services/
+│       └── api.js        # Axios instance configured with base API configuration
+├── .gitignore            # File tracking exemptions
+├── index.html            # Core entry template
+├── package.json          # Node dependencies and build script listings
+└── vite.config.js        # Build optimization configuration
