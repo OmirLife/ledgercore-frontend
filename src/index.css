@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+/* Custom Dark Scrollbar for Modern Browsers */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.6);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
